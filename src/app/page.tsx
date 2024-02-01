@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      프로젝트 시작
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <h1 className="text-4xl font-semibold">NextAuth Tutorial</h1>
+    </main>
   );
 }
