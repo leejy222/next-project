@@ -26,3 +26,14 @@ model Post {
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
 }
+
+model Board {
+  no        Int     @id @default(autoincrement())
+  title     String
+  content   String
+  files     String?
+  crtUser   String?
+  crtDate   String?
+  updUser   String?
+  updDate   String?
+}
