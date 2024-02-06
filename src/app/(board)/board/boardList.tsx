@@ -5,6 +5,10 @@ import { useRouter } from 'next/navigation';
 
 function BoardList() {
 
+  useEffect(() => {
+    getBoard();
+  }, [])
+  
   const [board, setBoard] = useState([]);
   const router = useRouter();
   const baseUrl = '/board';
@@ -16,10 +20,6 @@ function BoardList() {
     setBoard(await response.json() ?? []);
   }
 
-  useEffect(() => {
-    getBoard();
-  }, [])
-  
   return (
     <div>
       <table>
@@ -33,7 +33,7 @@ function BoardList() {
             board.map((item:BoardType,index:number) =>{
               return (
                 <tr key={index}>
-                  <td onClick={()=> router.push(`${baseUrl}/${item.no}`)}>{ item.no.toString() }</td>
+                  <td onClick={()=> router.push(`${baseUrl}/${item.no}`,{ scroll: true})}>{ item.no.toString() }</td>
                   <td>{ item.title }</td>
                   <td>{ item.content }</td>
               </tr>
