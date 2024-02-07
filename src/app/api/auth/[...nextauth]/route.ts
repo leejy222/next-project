@@ -6,7 +6,7 @@ const handler = NextAuth({
 		CredentialsProvider({
 			name: "Credentials",
 			credentials: {
-				username: { label: '이메일2', type: 'text', placeholder: '이메일 주소 입력 요망' },
+				username: { label: '이메일', type: 'text', placeholder: '이메일 주소 입력 요망' },
 				password: { label: '비밀번호', type: 'password' },
 			},
 			async authorize(credentials, req) {
@@ -20,7 +20,20 @@ const handler = NextAuth({
 				}
 			}
 		}),
-	]
+	],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+
+    async session({ session, token }) {
+      session.user = token as any;
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/signin"
+  }
 });
 
 export { handler as GET, handler as POST }

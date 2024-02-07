@@ -26,6 +26,9 @@
       "#/*": [
         "./app/*"
       ],
+      "#components/*": [
+        "./components/*"
+      ]
     },
   },
   "include": [
